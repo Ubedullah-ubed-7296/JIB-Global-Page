@@ -1,0 +1,259 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom right, #d2e0ff, #ffffff);
+    color: #222;
+}
+
+/* Background image with soft visibility */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url("background2.jpg") center/cover no-repeat;
+    opacity: 0.3; /* 0.10 to 0.30 adjust visibility */
+    z-index: -1;
+
+    /* Optional blending for premium look */
+    mix-blend-mode: multiply;
+}
+
+
+
+/* NAVBAR */
+.glass-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #0b2948;
+}
+
+.logo-img {
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+/* NAV MENU */
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0b2948;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #0b2948;
+    color: #fff;
+    border-radius: 6px;
+}
+
+
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    min-width: 200px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease;
+    list-style: none;
+}
+
+.dropdown-list li {
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-list li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-list a {
+    padding: 12px;
+    color: #0b2948;
+    display: block;
+    text-decoration: none;
+    font-size: 1em;
+    /* fixed so hover won't enlarge */
+    transition: background 0.3s, color 0.3s;
+}
+
+.dropdown:hover .dropdown-list {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+  font-size: 70px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: #b393d3;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0px #007bff,
+               1px 2px 0px #00eaff,
+               1px 4px 0px #00eaff,
+               1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+/* SECTIONS */
+.section {
+    padding: 70px 80px;
+}
+
+.title {
+    font-size: 2.2em;
+    color: #0b2948;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.box {
+    background: #fff;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    /* border-left: 8px solid #0b2948; */
+}
+
+/* CENTER TEXT */
+.center-text {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+/* FOOTER */
+footer {
+    background: #0b2948;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.flowing-border {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    padding: 25px;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Moving border effect */
+.flowing-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: 14px;
+
+    background: linear-gradient(90deg,
+            #0b2948,
+            /* Corporate Navy */
+            #007bff,
+            /* Royal Blue */
+            #00eaff,
+            /* Sky Cyan */
+            #00f6c9,
+            /* Aqua Green */
+            #f5c400,
+            /* Premium Golden */
+            #007bff,
+            #0b2948);
+
+    background-size: 400% 100%;
+    animation: flowColors 10s linear infinite;
+
+    /* Makes only the border visible */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    z-index: -1;
+}
+
+/* Gradient flows left-to-right */
+@keyframes flowColors {
+    0% {
+        background-position: 0% 0;
+    }
+
+    100% {
+        background-position: 400% 0;
+    }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .glass-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .dropdown-list {
+        position: static;
+        box-shadow: none;
+    }
+}
